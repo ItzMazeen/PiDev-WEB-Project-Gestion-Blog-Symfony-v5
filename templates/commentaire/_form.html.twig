@@ -1,0 +1,27 @@
+<div class="container">
+ <div class="bg-light rounded p-5">
+                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                            <h3 class="mb-0">Ajouter un commentaire : </h3>
+                        </div>
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+
+<div class="form-group"
+    {{ form_label(form.contenu,"contenu du commentaire : ") }}
+    {{ form_widget(form.contenu,{'attr':{'class':'form-control'}}) }}
+
+</div>
+
+<div class="form-group"
+    {{ form_label(form.userId,"l'utilisateur à commenter : ") }}
+    {{ form_widget(form.userId,{'attr':{'class':'form-control'}}) }}
+
+</div>
+<br> 
+
+    <button class="btn btn-primary w-100 py-3">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+</div>
+</div>
+
+
+ 

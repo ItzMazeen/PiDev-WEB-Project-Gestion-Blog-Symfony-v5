@@ -1,0 +1,11 @@
+{% extends 'gestion_blog/frontDetails.html.twig' %}
+
+{% block title %}Modifier le Commentaire{% endblock %}
+
+{% block body %}
+
+    {{ include('commentaire/_formedit.html.twig', {'button_label': 'Modifier'}) }}
+
+
+    {{ include('commentaire/_delete_form.html.twig') }}
+{% endblock %}

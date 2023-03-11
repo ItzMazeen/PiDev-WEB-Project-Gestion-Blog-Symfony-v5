@@ -1,0 +1,60 @@
+{% block title %}Aidme Blog | {{ article.sujet }}{% endblock %}
+{% block body %}
+<!-- Blog Start -->
+        <div class="container">
+            <div class="row">
+                    <!-- Blog Detail Start -->
+                            <h1 class="mb-4">{{ article.sujet }}</h1>
+                                <div class="mb-4">
+                                     <div class="d-flex mb-4">
+                                        <div class="ps-2">
+                                             Par <b>{{article.userId}}</b>
+                                          <p>Publié le {{article.createdAt ? article.createdAt|date('d-m-Y à H:i:s') : '' }} ,  {{ article.getViews() }} Vues</p>
+                                    </div>
+
+                                    
+                            </div>  
+                    </div>
+                        <p>{{ article.contenu }}</p>
+                    </div>
+                    <!-- Blog Detail End -->
+                    <!-- Comment List Start -->
+                    <h3 class="mb-0">{{comments|length}} Commentaires</h3>
+                        <div class="section-title section-title-sm position-relative pb-3 mb-4"></div>
+                    {% for comment in comments %}
+                    <div class="mb-5">
+                        <div class="d-flex mb-4">
+                            <div class="ps-3">
+                                <b>{{comment.userId}}</b> à commenté le <small>{{comment.createdAt ? comment.createdAt|date('d-m-Y à H:i:s') : '' }}</small>
+                                <p>{{comment.contenu}}</p>
+
+                            </div>
+                        </div>
+                        
+                    </div>
+                    {% endfor %}
+
+
+                    <!-- Comment List End -->
+    
+                  
+    
+
+
+    
+
+    
+                   
+        </div>
+
+<div class="d-flex align-items-center justify-content-center" style="height: 75px;">
+                        <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">Aidme</a>. All Rights Reserved. 
+						
+						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+						Designed by <a class="text-white border-bottom" href="#">Legends Team</a></p>
+                    </div>
+
+
+    
+    
+{% endblock %}
