@@ -1,0 +1,24 @@
+
+
+{% extends 'basefront_dossier.html.twig' %}
+{% block title %}Calcul de l'IMC{% endblock %}
+
+{% block body %}
+    <h1>Calcul de l'IMC</h1>
+
+    {% if imc is not null %}
+        <p>Votre IMC est de {{ imc|number_format(2) }}</p>
+    {% endif %}
+
+    <form method="post">
+        <div>
+            <label for="poids">Poids (en kg)</label>
+            <input type="number" id="poids" name="poids">
+        </div>
+        <div>
+            <label for="taille">Taille (en m)</label>
+            <input type="number" step="0.01" id="taille" name="taille">
+        </div>
+        <button type="submit">Calculer</button>
+    </form>
+{% endblock %}

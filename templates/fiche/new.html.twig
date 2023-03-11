@@ -1,0 +1,13 @@
+{% extends 'baseback_dossier.html.twig' %} 
+{% block title %}New Ficheconsultation{% endblock %}
+
+
+
+{% block body %}
+    <h1>Ajouter  Ficheconsultation</h1>
+
+    {{ include('fiche/_form.html.twig') }}
+<center>
+    <a href="{{ path('app_fiche_index') }}"><button type="button" class="btn btn-primary w-50 m-2">back to list</button></a>
+</center>
+{% endblock %}

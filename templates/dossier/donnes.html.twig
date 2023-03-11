@@ -1,0 +1,57 @@
+{% extends 'basefront_dossier.html.twig' %} 
+{% block title %} Données DossierMedical{% endblock %}
+
+{% block body %}
+    <h1> Données DossierMedical</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ dossier_medical.id }}</td>
+            </tr>
+            <tr>
+                <th>FirstName</th>
+                <td>{{ dossier_medical.firstName }}</td>
+            </tr>
+            <tr>
+                <th>LastName</th>
+                <td>{{ dossier_medical.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ dossier_medical.email }}</td>
+            </tr>
+            <tr>
+                <th>Date_naissance</th>
+                <td>{{ dossier_medical.dateNaissance ? dossier_medical.dateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Vaccins</th>
+                <td>{{ dossier_medical.vaccins }}</td>
+            </tr>
+            <tr>
+                <th>Maladies</th>
+                <td>{{ dossier_medical.maladies }}</td>
+            </tr>
+            <tr>
+                <th>Allergies</th>
+                <td>{{ dossier_medical.allergies }}</td>
+            </tr>
+            <tr>
+                <th>Analyses</th>
+                <td>{{ dossier_medical.analyses }}</td>
+            </tr>
+            <tr>
+                <th>Intervention_chirurgicale</th>
+                <td>{{ dossier_medical.interventionChirurgicale }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+   
+<a href="{{ path('app_dossier_download',{'id': dossier_medical.id})  }}"><button type="button" class="btn btn-primary m-2">Download</button></a>
+    
+
+   
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'gestion_blog/front.html.twig' %}
+{% block title %}Modifier l'article{% endblock %}
+{% block body %}
+<center> 
+</center>
+    {{ include('article/_formedit.html.twig', {'button_label': 'Modifier'}) }}
+ <br>
+    {{ include('article/_delete_form.html.twig') }}
+{% endblock %}

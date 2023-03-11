@@ -1,0 +1,75 @@
+{% extends 'base_back_event.html.twig' %}
+
+
+
+{% block title %}Afficher Évenement{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid pt-4 px-4">
+                <div class="bg-light rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                           <h1>Les Évenements</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ event.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom_event</th>
+                <td>{{ event.nomEvent }}</td>
+            </tr>
+            <tr>
+                <th>Discription_event</th>
+                <td>{{ event.discriptionEvent }}</td>
+            </tr>
+            <tr>
+                <th>Image_event</th>
+                <td><img src="{{ event.imageEvent }}"width="100" height="100"></td>
+            </tr>
+            <tr>
+                <th>Date_debut_event</th>
+                <td>{{ event.dateDebutEvent ? event.dateDebutEvent|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_fin_event</th>
+                <td>{{ event.dateFinEvent ? event.dateFinEvent|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Adresse_event</th>
+                <td>{{ event.adresseEvent }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ event.status }}</td>
+            </tr>
+
+
+
+            
+            <tr>
+                <th>Reserve</th>
+                <td>{{ event.reserve }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_event_index') }}"class="btn btn-primary py-2 px-4 mt-4">Liste des Évenements</a>
+
+    <a href="{{ path('app_event_edit', {'id': event.id}) }}"class="btn btn-primary py-2 px-4 mt-4">Modifier</a>
+
+    {{ include('event/_delete_form.html.twig') }}
+
+    
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+{% endblock %}

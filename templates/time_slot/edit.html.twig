@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit TimeSlot
+{% endblock %}
+
+{# oveeriding annoying header #}
+{% block header %}
+<div class="bg-dark" style="height: 20vh;"></div>
+{% endblock %}
+
+{% block body %}
+<style>
+.custom-container {
+  padding: 20px; /* add padding to the container */
+  margin: 0 auto; /* center the container horizontally */
+  max-width: 1200px; /* set a maximum width for the container */
+}
+</style>
+
+	<br>
+	<br>
+	<br>
+<div class="custom-container">
+<div class="row">
+<div class="col-md-12">
+
+	<h1>Edit TimeSlot</h1>
+
+	{{ include('time_slot/_form.html.twig', {'button_label': 'Update'}) }}
+
+	<a href="{{ path('app_time_slot_index') }}">back to list</a>
+
+	{{ include('time_slot/_delete_form.html.twig') }}
+	<br>
+	<br>
+	<br>
+	
+
+	</div>
+	</div>
+	</div>
+{% endblock %}

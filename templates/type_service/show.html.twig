@@ -1,0 +1,30 @@
+    {% extends 'gestion_service/back.html.twig' %}
+
+{% block title %}Type Service{% endblock %}
+
+{% block body %}
+    <h1>Type Service</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ type_service.id }}</td>
+            </tr>
+            <tr>
+                <th>NomType</th>
+                <td>{{ type_service.NomType }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ type_service.Description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_type_service_index') }}"><button class="btn btn-primary">Retour</button></a>
+
+    <a href="{{ path('app_type_service_edit', {'id': type_service.id}) }}"><button class="btn btn-primary">Modifier</button></a>
+
+    {{ include('type_service/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,23 @@
+success: function(data) {
+    var html = '';
+    for (var i = 0; i < data.length; i++) {
+        var dossier_medical = data[i];
+        html += '<tr>';
+        html += '<td>' + dossier_medical.id + '</td>';
+        html += '<td>' + dossier_medical.firstName + '</td>';
+        html += '<td>' + dossier_medical.lastName + '</td>';
+        html += '<td>' + dossier_medical.email + '</td>';
+        html += '<td>' + dossier_medical.dateNaissance + '</td>';
+        html += '<td>' + dossier_medical.vaccins + '</td>';
+        html += '<td>' + dossier_medical.maladies + '</td>';
+        html += '<td>' + dossier_medical.allergies + '</td>';
+        html += '<td>' + dossier_medical.analyses + '</td>';
+        html += '<td>' + dossier_medical.interventionChirurgicale + '</td>';
+        html += '<td>';
+        html += '<a href="{{ path('app_dossier_show', {'id': dossier_medical.id}) }}"><button type="button" class="btn btn-primary m-2">show</button></a>';
+        html += '<a href="{{ path('app_dossier_edit', {'id': dossier_medical.id}) }}"><button type="button" class="btn btn-primary m-2">edit</button></a>';
+        html += '</td>';
+        html += '</tr>';
+    }
+    $('#search-results').html(html);
+}

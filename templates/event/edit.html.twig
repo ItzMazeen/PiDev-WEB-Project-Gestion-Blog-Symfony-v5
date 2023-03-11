@@ -1,0 +1,26 @@
+{% extends 'base_back_event.html.twig' %}
+
+{% block title %}Modifier Évenement{% endblock %}
+
+{% block body %}
+    
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            <h1>Modifier un Évenement</h1>
+
+    {{ include('event/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('app_event_index') }}"class="btn btn-primary py-2 px-4 mt-4">Liste des Évenements</a>
+
+  
+
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock %}

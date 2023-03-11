@@ -1,0 +1,58 @@
+{% extends 'gestion_service/back.html.twig' %}
+
+{% block title %}Service index{% endblock %}
+
+{% block body %}
+    <h1>Stats</h1>
+    <div class="container">
+        <h5>nb services par types</h5>
+    </div>
+    <h1>Les Services</h1>
+    <form class="form-group" style="display: flex">
+        <input type="text" class="form-control" name="search" style="margin: 10px" placeholder="Rechercher....">
+        <button class="btn btn-primary" style="margin: 10px" >Search</button>
+    </form>
+
+    <div id="search-results"></div>
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+                <th>Nom Service</th>
+                <th>Proprietaire</th>
+                <th>Id type</th>
+                <th>Prix</th>
+                <th>Date de debut</th>
+                <th>Date de fin</th>
+                <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for service in services %}
+            <tr>
+                <td>{{ service.id }}</td>
+                <td>{{ service.NomService }}</td>
+                <td>{{ service.Proprietaire }}</td>
+                <td>{{ service.idType }}</td>
+                <td>{{ service.Prix }}</td>
+                <td>{{ service.DateDebut ? service.DateDebut|date('Y-m-d') : '' }}</td>
+                <td>{{ service.DateFin ? service.DateFin|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_service_back_show', {'id': service.id}) }}">show</a>
+                    <a href="{{ path('app_service_back_edit', {'id': service.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Rien à afficher</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div style="display: flex">
+        {{ knp_pagination_render(services, 'pagination.html.twig') }}
+        <a href="{{ path('app_service_back_new') }}"><button style="margin-left: 50px" class="btn btn-primary">Nouveau</button></a>
+    </div>
+{% endblock %}

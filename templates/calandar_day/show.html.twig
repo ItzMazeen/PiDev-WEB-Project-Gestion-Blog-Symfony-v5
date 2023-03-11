@@ -1,0 +1,131 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CalandarDay
+{% endblock %}
+
+{# oveeriding annoying header #}
+{% block header %}
+<div class="bg-dark" style="height: 20vh;"></div>
+{% endblock %}
+
+{% block body %}
+<style>
+.custom-container {
+  padding: 20px; /* add padding to the container */
+  margin: 0 auto; /* center the container horizontally */
+  max-width: 1200px; /* set a maximum width for the container */
+}
+</style>
+
+	<br>
+	<br>
+	<br>
+<div class="custom-container">
+<div class="row">
+<div class="col-md-12">
+
+	<h1>CalandarDay</h1>
+
+	<table class="table">
+		<tbody>
+			{# <tr>
+				<th>Id</th>
+				<td>{{ calandar_day.id }}</td>
+			</tr> #}
+			<tr>
+				<th>
+				Date : {{ calandar_day.date ? calandar_day.date|date('Y-m-d') : '' }}
+
+				</th>
+				
+			</tr>
+			{# <tr>
+				<th>DayStart</th>
+				<td>{{ calandar_day.dayStart ? calandar_day.dayStart|date('H:i:s') : '' }}</td>
+			</tr> #}
+					{% set time_slots = calandar_day.timeSlots %}
+					{# {{ dump(role) }} #}
+					{% if role == "ROLE_DOCTOR" %}
+			
+				
+				<td>
+						{{ include( 'appointment/index.html.twig' , {'appointments': appointments  }   ) }}
+				</td>
+			
+				
+				
+			</tr>
+					{# {% else %}
+						{{ include( 'appointment/index.html.twig'  ) }} #}
+					{% endif %}
+			
+	
+
+			{# <tr>
+				<th>DayEnd</th>
+				<td>{{ calandar_day.dayEnd ? calandar_day.dayEnd|date('H:i:s') : '' }}</td>
+			</tr> #}
+			{# <tr>
+				<th>SessionDuration</th>
+				<td>{{ calandar_day.sessionDuration }}</td>
+			</tr> #}
+			
+
+			{# <tr>
+				<th>LunchBreakStart</th>
+				<td>{{ calandar_day.lunchBreakStart ? calandar_day.lunchBreakStart|date('H:i:s') : '' }}</td>
+			</tr> #}
+			{# <tr>
+				<th>LunchBreakEnd</th>
+				<td>{{ calandar_day.lunchBreakEnd ? calandar_day.lunchBreakEnd|date('H:i:s') : '' }}</td>
+			</tr> #}
+		</tbody>
+	</table>
+	
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>
+				Today's TimeSlots
+				</th>
+			</tr>
+			
+			<tr>
+				{# <th>today's TimeSlots :
+				</th> #}
+				<td>
+					{% set time_slots = calandar_day.timeSlots %}
+					{% if role == "ROLE_USER" %}
+					{{ include( 'time_slot/index.html.twig' , {'calandarId': calandar_day.id , 'role' : role }   ) }}
+					{% else %}
+					{{ include( 'time_slot/index.html.twig' , {'calandarId': calandar_day.id , 'role' : role }  ) }} {# i don't know Why  #}
+					{% endif %}
+				</td>
+
+			</tr>
+		</tbody>
+	</table>
+	{% if role == "ROLE_USER" %}
+		<a href="{{ path('app_calandar_access_day_index',{'id': calandar_day.doctor} ) }}">
+		<button class="btn btn-success">back</button></a>
+	{% else %}
+			<a href="{{ path('app_calandar_day_index') }}">back to calandar</a>&nbsp;&nbsp;
+			{# <a href="{{ path('app_calandar_day_edit', {'id': calandar_day.id}) }}"> #}
+			{# <button class="btn btn-success">edit</button></a> #}
+			{{ include('calandar_day/_delete_form.html.twig') }}
+	{% endif %}
+
+
+
+</div>
+</div>
+</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+{% endblock %}

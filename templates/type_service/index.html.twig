@@ -1,0 +1,37 @@
+    {% extends 'gestion_service/back.html.twig' %}
+
+{% block title %}TypeService{% endblock %}
+
+{% block body %}
+    <h1>Type Service</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomType</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type_service in type_services %}
+            <tr>
+                <td>{{ type_service.id }}</td>
+                <td>{{ type_service.NomType }}</td>
+                <td>{{ type_service.Description }}</td>
+                <td>
+                    <a href="{{ path('app_type_service_show', {'id': type_service.id}) }}"><button class="btn btn-primary">Afficher</button></a>
+                    <a href="{{ path('app_type_service_edit', {'id': type_service.id}) }}"><button class="btn btn-primary">Modifier</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Rien à afficher</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_type_service_new') }}"><button class="btn btn-primary">Créer</button></a>
+{% endblock %}

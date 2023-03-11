@@ -1,0 +1,46 @@
+{# {% extends 'base.html.twig' %} #}
+
+
+{% block body %}
+	<h4>Today's Online-Appointments</h4>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Date</th>
+				<th>Patient</th>
+				<th>Reason</th>
+				<th>Hour</th>
+				<th>BookingState</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for appointment in appointments %} 
+				<tr>
+					<td>{{ appointment.id }}</td>
+					<td>{{ appointment.date ? appointment.date|date('Y-m-d') : '' }}</td>
+					<td>{{ appointment.patient.firstName }}</td>
+					<td>{{ appointment.reason }}</td>
+					<td>{{ appointment.hour ? appointment.hour|date('H:i:s') : '' }}</td>
+					<td>{{ appointment.bookingState }}</td>
+					<td>
+						<a href="{{ path('app_appointment_show', {'id': appointment.id}) }}">show&nbsp;</a>
+						<a href="{{ path('app_appointment_edit', {'id': appointment.id}) }}"> edit&nbsp; </a>
+						<a href="{{ path('app_sending_email', {'email': appointment.patient.email , 'date': appointment.date|date('Y-m-d') , 'doctorName': appointment.doctor.lastName , 'doctorEmail': appointment.doctor.email}) }}">
+						<button class="btn btn-success"> Notify </button></a>
+						
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+		<a href="{{ path('app_calandar_day_index') }}">back to calandar</a>
+	{# <a href="{{ path('app_appointment_new') }}">Create new</a> #}
+{% endblock %}

@@ -1,0 +1,54 @@
+{# {% extends 'base.html.twig' %} #}
+
+{# {% block title %}TimeSlot index{% endblock %} #}
+
+{# {% block body %} #}
+
+	<table class="table"> <thead>
+		<tr>
+			<th>Id</th>
+			<th>StartTime</th>
+			{# <th>EndTime</th> #}
+			<th>Status</th>
+			<th>Reason</th>
+			<th>Note</th>
+			{# <th>IndexSlot</th> #}
+			<th>actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for time_slot in time_slots %}
+			 {% if role == "ROLE_USER" and time_slot.status == "not-available" %}
+			 {% else %}
+			<tr>
+        			
+			
+				<td>{{ time_slot.id }}</td>
+				<td>{{ time_slot.startTime ? time_slot.startTime|date('H:i:s') : '' }}</td>
+				{# <td>{{ time_slot.endTime ? time_slot.endTime|date('H:i:s') : '' }}</td> #}
+
+				<td>{{ time_slot.status }}</td>
+				<td>{{ time_slot.reason }}</td>
+				<td>{{ time_slot.note }}</td>
+				{# <td>{{ time_slot.indexSlot }}</td> #}
+				<td>
+				
+					{% if role == "ROLE_DOCTOR" %}
+					<a href="{{ path('app_time_slot_edit', {'id': time_slot.id}) }}">edit</a>
+					{% endif %}
+					{% if role == "ROLE_USER" %}
+					<a href="{{ path('app_time_slot_show', {'id': time_slot.id}) }}">book</a>
+					{% endif %}
+				</td>
+			</tr>
+    		{% endif %}
+		{% else %}
+			<tr>
+				<td colspan="8">no records found</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{# <a href="{{ path('app_time_slot_new') }}">Create new</a> #}
+{# {% endblock %} #}

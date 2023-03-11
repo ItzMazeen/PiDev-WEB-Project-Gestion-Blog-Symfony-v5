@@ -1,0 +1,65 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Patient Notification</title>
+  <style>
+    /* Body styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #333333;
+      background-color: #f2f2f2;
+    }
+    
+    /* Container styles */
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Header styles */
+    .header {
+      padding: 20px;
+      background-color: #0080ff;
+      color: #ffffff;
+    }
+    
+    /* Content styles */
+    .content {
+      padding: 20px;
+    }
+    
+    /* Footer styles */
+    .footer {
+      padding: 20px;
+      background-color: #f2f2f2;
+      color: #777777;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Patient Notification</h1>
+    </div>
+    <div class="content">
+      <p>Dear {{patientName ?? 'Patient'}},</p>
+      <p>We are writing to inform you that {{message}}.</p>
+      <p>Thank you for choosing our clinic.</p>
+    </div>
+    <div class="footer">
+      <p>&copy; Dr {{doctor ?? '-'}}. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+</html>

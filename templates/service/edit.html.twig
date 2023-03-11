@@ -1,0 +1,13 @@
+{% extends 'gestion_service/back.html.twig' %}
+
+{% block title %}Edit Service{% endblock %}
+
+{% block body %}
+    <h1>Edit Service</h1>
+
+    {{ include('service/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_service_index') }}"><button class="btn btn-primary">Retour</button></a>
+
+    {{ include('service/_delete_form.html.twig') }}
+{% endblock %}

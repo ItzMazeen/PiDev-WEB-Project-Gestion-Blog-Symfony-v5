@@ -1,0 +1,106 @@
+<div class="container">
+
+{{ form_start(form ,{'attr':{'novalidate':'novalidate'}}) }}
+<div class="form-group">
+    {{ form_label(form.firstName,"votre Nom") }}
+    {{ form_widget(form.firstName,{'attr':{'class':'form-control'}}) }}
+    {% if form_errors(form.firstName) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.firstName) }}
+</div>
+{%  endif %}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.lastName,"votre prenom") }}
+    {{ form_widget(form.lastName,{'attr':{'class':'form-control'}}) }}
+    {% if form_errors(form.lastName) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.lastName) }}
+</div>
+{%  endif %}
+</div>
+<div class="form-group">
+    {{ form_label(form.date_naissance,"votre  date_naissance") }}
+    {{ form_widget(form.date_naissance,{'attr':{'class':'form-control'}}) }}
+    {% if form_errors(form.date_naissance) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.date_naissance) }}
+</div>
+{%  endif %}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.userId,"votre  userId") }}
+    {{ form_widget(form.userId,{'attr':{'class':'form-control'}}) }}
+    {% if form_errors(form.userId) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.userId) }}
+</div>
+{%  endif %}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.email,"votre adresse ") }}
+    {{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}
+    {% if form_errors(form.email) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.email) }}
+</div>
+{%  endif %}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.vaccins,"vos vaccins") }}
+    {{ form_widget(form.vaccins,{'attr':{'class':'form-control'}}) }}
+    {% if form_errors(form.vaccins) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.vaccins) }}
+</div>
+{%  endif %}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.maladies,"vos maladies") }}
+    {{ form_widget(form.maladies,{'attr':{'class':'form-control'}}) }}
+    {% if form_errors(form.maladies) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.maladies) }}
+</div>
+{%  endif %}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.allergies,"vos allergies") }}
+    {{ form_widget(form.allergies,{'attr':{'class':'form-control'}}) }}
+    {% if form_errors(form.allergies) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.allergies) }}
+</div>
+{%  endif %}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.analyses,"vos analyses") }}
+    {{ form_widget(form.analyses,{'attr':{'class':'form-control'}}) }}
+    {% if form_errors(form.analyses) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.analyses) }}
+</div>
+{%  endif %}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.intervention_chirurgicale,"vos intervention_chirurgicale") }}
+    {{ form_widget(form.intervention_chirurgicale,{'attr':{'class':'form-control'}}) }}
+    {% if form_errors(form.intervention_chirurgicale) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.intervention_chirurgicale) }}
+</div>
+{%  endif %}
+</div>
+<center>
+ <button class="btn btn-outline-primary btn-lg w-50 m-2">{{ button_label|default('Save') }}</button>   
+</center>          
+{{ form_end(form) }}
+</div>

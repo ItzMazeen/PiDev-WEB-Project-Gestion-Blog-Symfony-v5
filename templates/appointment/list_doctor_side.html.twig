@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Appointment{% endblock %}
+
+{# oveeriding annoying header #}
+{% block header %}
+<div class="bg-dark" style="height: 20vh;"></div>
+{% endblock %}
+
+{% block body %}
+<style>
+.custom-container {
+  padding: 20px; /* add padding to the container */
+  margin: 0 auto; /* center the container horizontally */
+  max-width: 1200px; /* set a maximum width for the container */
+}
+</style>
+	<br>
+	<br>
+	<br>
+
+<div class="custom-container">
+<div class="row">
+<div class="col-md-12">
+
+
+
+    <h2>Appointment</h2>
+	<table class="table">
+		<thead>
+			<tr class="bg-light">
+				<th>Id</th>
+				<th>Patient</th>
+				<th>Patient's phone #</th>
+				<th>Patient's email #</th>
+				<th>Date of Appointment</th>
+				<th>Reason</th>
+				<th>Hour</th>
+				<th>BookingState</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for appointment in appointments %} 
+				<tr>
+					<td>{{ appointment.id }}</td>
+					<td>{{ appointment.patient.lastName }}</td>
+					<td>{{ appointment.patient.phoneNumber }}</td>
+					<td>{{ appointment.patient.email }}</td>
+					<td>{{ appointment.date ? appointment.date|date('Y-m-d') : '' }}</td>
+					<td>{{ appointment.reason }}</td>
+					<td>{{ appointment.hour ? appointment.hour|date('H:i:s') : '' }}</td>
+					<td>{{ appointment.bookingState }}</td>
+					<td>
+						<a href="{{ path('app_appointment_edit', {'id': appointment.id}) }}">edit &nbsp</a>
+						<a href="{{ path('app_appointment_show', {'id': appointment.id, 'iam_doctor': appointment.patient.id }) }}">show &nbsp</a>
+						<a href="{{ path('app_sending_email', {'email': appointment.patient.email , 'date': appointment.date|date('Y-m-d') , 'doctorName': appointment.doctor.lastName , 'doctorEmail': appointment.doctor.email}) }}">Notify &nbsp</a>
+						<a href="{{ path('app_calandar_day_index') }}">calandar&nbsp</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	{# <a href="{{ path('app_appointment_new') }}">Create new</a> #}
+
+
+  </div>
+        </div>
+    </div>
+
+    <br><br><br><br><br>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base_front_event1.html.twig' %}
+
+{% block title %}Ticket{% endblock %}
+
+{% block body %}
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light rounded-top p-4" >
+        <div class="row">
+            <div class="col-12 col-sm-6 text-center text-sm-start">
+               <h1 style="text-align: center;">Ticket</h1>
+
+                <table class="table table-striped table-hover" >
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Matricule_event</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Date_ticket</th>
+                            <th scope="col">Valide_ticket</th>
+                            <th scope="col">Prix_ticket</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">{{ event_ticket.id }}</th>
+                            <td>{{ event_ticket.matriculeEvent }}</td>
+                            <td><img src="{{ event_ticket.image }}" width="100" height="100"></td>
+                            <td>{{ event_ticket.dateTicket ? event_ticket.dateTicket|date('Y-m-d') : '' }}</td>
+                            <td>{{ event_ticket.valideTicket }}</td>
+                            <td>{{ event_ticket.prixTicket }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="{{ path('app_events_ticket_pdf', {'id': event_ticket.id}) }}" class="btn btn-primary py-2 px-4">Télécharger le ticket</a>
+                    <a href="{{ path('app_events_ticket_index') }}" class="btn btn-primary py-2 px-4">Liste des tickets</a>
+                </div>
+          
+            <div class="col-12 col-sm-6 text-center text-sm-end">
+                <!-- col vide -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

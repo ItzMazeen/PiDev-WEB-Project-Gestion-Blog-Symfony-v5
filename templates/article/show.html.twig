@@ -1,0 +1,173 @@
+{% extends 'gestion_blog/frontDetails.html.twig' %}
+{% block title %}Aidme Blog | {{ article.sujet }}{% endblock %}
+{% block body %}
+<!-- Blog Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-8">
+                    <!-- Blog Detail Start -->
+                    <div class="mb-5">
+                            <h1 class="mb-4">{{ article.sujet }}</h1>
+                                <div class="mb-4">
+                                     <div class="d-flex mb-4">
+                                            <img src="{{asset('front_gestion_blog/img/user.jpg')}}" class="img-fluid rounded" style="width: 45px; height: 45px;">
+                                        <div class="ps-2">
+                                             Par <b>{{article.userId}}</b>
+                                               
+
+                                          <p>Publié le {{article.createdAt ? article.createdAt|date('d-m-Y à H:i:s') : '' }} , <i class="bi bi-eye-fill"> {{ article.getViews() }}</i></p>
+                                    </div>
+                                    <div class="ps-4"></div><div class="ps-4"></div><div class="ps-4"></div><div class="ps-4"></div><div class="ps-4"></div><div class="ps-4"></div><div class="ps-4"></div>
+
+                                   
+                                    {% if roleunique == "ROLE_USER" or roleunique == "ROLE_DOCTOR"  or roleunique == "ROLE_NURSE" %}
+        <div class="ps-4">
+                                     <button class="btn btn-dark w-100 py-3"><a href="{{ path('app_article_edit', {'id': article.id}) }}">Modifier l'article</a></button>
+                                    </div>
+   
+    {% endif %}
+                                     
+                                
+                            </div>  
+                    </div>
+                        <img class="img-fluid w-100 rounded mb-5" src="{{asset('uploads/images/' ~ article.image)}}" alt="">
+                        <p>{{ article.contenu }}</p>
+                    </div>
+                    <!-- Blog Detail End -->
+                    <!-- Comment List Start -->
+                    <h3 class="mb-0">{{comments|length}} Commentaires</h3>
+                        <div class="section-title section-title-sm position-relative pb-3 mb-4"></div>
+                    {% for comment in comments %}
+                    <div class="mb-5">
+                        <div class="d-flex mb-4">
+                            <img src="{{asset('front_gestion_blog/img/user.jpg')}}" class="img-fluid rounded" style="width: 45px; height: 45px;">
+                            <div class="ps-3">
+                                <b>{{comment.userId}}</b> à commenté le <small>{{comment.createdAt ? comment.createdAt|date('d-m-Y à H:i:s') : '' }}</small>
+                                <p>{{comment.contenu}}</p>
+                                {% if roleunique == "ROLE_USER" or roleunique == "ROLE_DOCTOR"  or roleunique == "ROLE_NURSE" %}
+        <button class="btn btn-sm btn-dark"><a href="{{ path('app_commentaire_edit', {'id': comment.id}) }}">Modifier le commentaire</a></button>
+   
+    {% endif %}
+                                
+
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+                    {% if roleunique == "ROLE_USER" or roleunique == "ROLE_DOCTOR"  or roleunique == "ROLE_NURSE" %}
+        <button class="btn btn-dark w-100 py-3">
+                        <a href="{{ path('app_commentaire_new', {'id': article.id}) }}">Ajouter un commentaire</a></button>
+                        <br><br>
+                        <button class="btn btn-dark w-100 py-3">
+                        <a href="{{ path('app_pdf_download', {'id': article.id}) }}">Imprimer</a></button
+   
+    {% endif %}
+                       
+<br> <br> <br>                     <h3 class="mb-0">Partager l'article :</h3>
+                                            <div class="section-title section-title-sm position-relative pb-3 mb-4"></div>
+<center>
+
+
+            <div id="share-buttons">
+
+  <!-- facebook -->
+  <a class="facebook" target="blank">
+  <div class="btn btn-primary btn-square me-2"> 
+  <i class="fab fa-facebook-f fw-normal"></i>
+  </div>
+  </a>
+  
+
+
+
+  <!-- twitter -->
+
+  <a class="twitter" target="blank">
+  <div class="btn btn-primary btn-square me-2"> 
+  <i class="fab fa-twitter"></i>
+  </div>
+  </a>
+  
+
+                    <!-- reddit -->
+  <a class="reddit" target="blank">
+  <div class="btn btn-primary btn-square me-2"> 
+  <i class="fab fa-reddit fw-normal"></i>
+  </div>
+  </a>
+
+
+  <!-- whatsapp-->
+  <a class="whatsapp" target="blank">
+  <div class="btn btn-primary btn-square me-2"> 
+  <i class="fab fa-whatsapp fw-normal"></i>
+  </div>
+  </a>
+
+</div>
+</center>
+     <script>
+            const link = encodeURI(window.location.href);
+            const msg = encodeURIComponent('Hey, I found this article');
+            const title = encodeURIComponent('{{ article.sujet }}');
+
+
+            const fb = document.querySelector('.facebook');
+            fb.href = `https://www.facebook.com/share.php?u=${link}`;
+
+            const twitter = document.querySelector('.twitter');
+            twitter.href = `http://twitter.com/share?&url=${link}&text=${msg}&hashtags=AIDME_BLOG,symfony`;
+
+
+            const reddit = document.querySelector('.reddit');
+            reddit.href = `http://www.reddit.com/submit?url=${link}&title=${title}`;
+
+            const whatsapp = document.querySelector('.whatsapp');
+            whatsapp.href = `https://api.whatsapp.com/send?text=${msg}: ${link}`;
+            </script>
+
+
+                </div>
+    
+                <!-- Sidebar Start -->
+                <div class="col-lg-4">
+
+    
+                    <!-- Recent Post Start -->
+                    <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                            <h3 class="mb-0">Top Views Articles</h3>
+                        </div>
+                    {% for Bestarticle in Bestarticles %}
+                    <div class="mb-5 wow slideInUp" data-wow-delay="0.1s"> 
+                        <div class="d-flex rounded overflow-hidden mb-3">
+                            <img class="img-fluid" src="{{asset('uploads/images/' ~ Bestarticle.image)}}" style="width: 100px; height: 100px; object-fit: cover;" alt="">
+                            <a href="{{ path('app_article_show', {'id': Bestarticle.id}) }}" class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0"> {{ Bestarticle.sujet }}
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <!-- Recent Post End -->
+    
+                    <!-- Image Start -->
+                    <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
+                        <img src="{{asset('img/blog-1.jpg')}}" alt="" class="img-fluid rounded">
+                    </div>
+                    <!-- Image End -->
+    
+
+    
+
+                </div>
+                <!-- Sidebar End -->
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    
+    
+{% endblock %}

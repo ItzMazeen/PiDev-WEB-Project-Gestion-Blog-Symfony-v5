@@ -1,0 +1,91 @@
+<div class="container">
+{{ form_start(form ,{'attr':{'novalidate':'novalidate'}}) }}
+
+
+
+
+<div class="form-group">
+    {{ form_label(form.firstName," Nom patient") }}
+    {{ form_widget(form.firstName,{'attr':{'class':'form-control' , 'rows': 4, 'style': 'width: 50%'}}) }}
+    {% if form_errors(form.firstName) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.firstName) }}
+</div>
+{%  endif %}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.lastName,"prenom patient") }}
+    {{ form_widget(form.lastName,{'attr':{'class':'form-control' , 'rows': 4, 'style': 'width: 50%'}}) }}
+    {% if form_errors(form.lastName) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.lastName) }}
+</div>
+{%  endif %}
+</div>
+<div class="form-group">
+    {{ form_label(form.dossierMedical," le dossierMedical") }}
+    {{ form_widget(form.dossierMedical,{'attr':{'class':'form-control' , 'rows': 4, 'style': 'width: 50%'}}) }}
+    {% if form_errors(form.dossierMedical) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.dossierMedical) }}
+</div>
+{%  endif %}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.date_consultation,"la date_consultation") }}
+    {{ form_widget(form.date_consultation,{'attr':{'class':'form-control' , 'rows': 4, 'style': 'width: 50%'}}) }}
+    {% if form_errors(form.date_consultation) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.date_consultation) }}
+</div>
+{%  endif %}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.doctor,"le docteur") }}
+    {{ form_widget(form.doctor,{'attr':{'class':'form-control' , 'rows': 4, 'style': 'width: 50%'}}) }}
+    {% if form_errors(form.doctor) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.doctor) }}
+</div>
+{%  endif %}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.specialite,"votre specialite") }}
+    {{ form_widget(form.specialite,{'attr':{'class':'form-control' , 'rows': 4, 'style': 'width: 50%'}}) }}
+    {% if form_errors(form.specialite) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.specialite) }}
+</div>
+{%  endif %}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.traitement,"les traitements") }}
+    {{ form_widget(form.traitement,{'attr':{'class':'form-control' , 'rows': 4, 'style': 'width: 50%'}}) }}
+    {% if form_errors(form.traitement) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.traitement) }}
+</div>
+{%  endif %}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.reccomendation,"votre reccomendation") }}
+    {{ form_widget(form.reccomendation,{'attr':{'class':'form-control' , 'rows': 4, 'style': 'width: 50%'}}) }}
+    {% if form_errors(form.reccomendation) is not empty %}
+    <div class="alert alert-danger">
+    {{ form_errors(form.reccomendation) }}
+</div>
+{%  endif %}
+</div>
+
+
+
+<center>
+    <button class="btn btn-primary w-50 m-2">{{ button_label|default('Save') }}</button>
+</center>
+{{ form_end(form) }}

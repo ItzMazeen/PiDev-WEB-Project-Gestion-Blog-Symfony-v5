@@ -1,0 +1,108 @@
+{% extends 'base_seif_pdf.html.twig' %}
+
+{% block title %}Calndars{% endblock %}
+
+
+
+
+{% block body %}
+<style>
+    /* Table styles */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+    
+    /* Page styles */
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #333333;
+      background-color: #ffffff;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    
+    p {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    
+    /* Header and footer styles */
+    .header, .footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      color: #777777;
+      text-align: center;
+      font-size: 12px;
+    }
+    
+    .header {
+      top: 0;
+      border-bottom: 1px solid #777777;
+      padding-bottom: 10px;
+    }
+    
+    .footer {
+      bottom: 0;
+      border-top: 1px solid #777777;
+      padding-top: 10px;
+    }
+  </style>
+
+  
+
+  {% for calendarDay in calendarDays %}
+    <h2>{{ calendarDay.date|date('l, F j, Y') }} - Dr {{ calendarDay.doctor.lastName|upper }}  (ID: {{ calendarDay.doctor.id }})</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Time Slot</th>
+          <th>Status</th>
+          <th>Reason</th>
+          <th>Note</th>
+          <th>Appointment</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for timeSlot in calendarDay.timeSlots %}
+          <tr>
+            <td>{{ timeSlot.startTime|date('g:i A') }} - {{ timeSlot.endTime|date('g:i A') }}</td>
+            <td>{{ timeSlot.status }}</td>
+            <td>{{ timeSlot.reason ?? '-' }}</td>
+            <td>{{ timeSlot.note ?? '-' }}</td>
+            <td>{{ timeSlot.appointment.patient.firstName ?? '-' }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <hr style="width:100%", size="4", color="black"> 
+    <br>
+    <br>
+    
+  {% endfor %}
+{% endblock %}
+
+
+

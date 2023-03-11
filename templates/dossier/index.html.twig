@@ -1,0 +1,124 @@
+{% extends 'basefront_dossier.html.twig' %}
+{% block title %}DossierMedical {% endblock %}
+
+{% block body %}
+
+<div class="row mt-5">
+  <div class="col-12 col-md-6 offset-md-3">
+    <form id="search-form">
+      <div class="form-group">
+        <div class="d-flex">
+          <input class="form-control form-control-sm" type="text" id="firstName" name="firstName" placeholder="Entrer votre nom">
+          <button type="submit" class="btn btn-primary ms-2">Rechercher</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div id="search-results">
+    <!-- Affichage des résultats de la recherche -->
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#search-form').submit(function(event) {
+            event.preventDefault();
+        
+            var firstName = $('#firstName').val();
+            var lastName = $('#lastName').val();
+            var email = $('#email').val();
+            var dateNaissance = $('#date_naissance').val();
+            var vaccins = $('#vaccins').val();
+            var maladies = $('#maladies').val();
+            var allergies = $('#allergies').val();
+            var analyses = $('#analyses').val();
+            var interventionChirurgicale = $('#interventionChirurgicale').val();
+            $.ajax({
+                url: '{{ path('app_dossier_search') }}',
+                data: {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                dateNaissance: dateNaissance,
+                vaccins: vaccins,
+                maladies: maladies,
+                allergies: allergies,
+                analyses: analyses,
+                interventionChirurgicale: interventionChirurgicale
+                },
+                dataType: 'json',
+               // success: function(data) {
+                   
+                    
+   success: function (response) {
+    var data = response;
+    var table = '<table>';
+    for (var i = 0; i < data.length; i++) {
+        table += '<tr>';
+        table += '<td>' + data[i].id + '</td>';
+        table += '<td>' + data[i].firstName + '</td>';
+        table += '<td>' + data[i].lastName + '</td>';
+        table += '<td>' + data[i].email + '</td>';
+        table += '<td>' + data[i].date_naissance + '</td>';
+        table += '<td>' + data[i].vaccins + '</td>';
+        table += '<td>' + data[i].maladies + '</td>';
+        table += '<td>' + data[i].allergies + '</td>';
+        table += '<td>' + data[i].analyses + '</td>';
+        table += '<td>' + data[i].intervention_chirurgicale + '</td>';
+        table += '</tr>';
+    }
+    table += '</table>';
+    $('#search-results').html(table);
+   
+}
+            });
+        });
+    });
+</script>
+ <div class="my-5">
+     <div class="row g-5">
+    {% for dossier_medical in dossier_medicals %}
+    <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+        <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+            <div class="service-icon">
+                <i class="fa fa-shield-alt text-white"></i>
+            </div>
+            <h4 class="mb-3">{{ dossier_medical.firstName }} {{ dossier_medical.lastName }}</h4>
+            <p class="m-0">Email: {{ dossier_medical.email }}</p>
+            <p class="m-0">Date de naissance: {{ dossier_medical.dateNaissance ? dossier_medical.dateNaissance|date('Y-m-d') : '' }}</p>
+            <p class="m-0">vaccins: {{ dossier_medical.vaccins }}</p>
+            <p class="m-0">maladies:{{ dossier_medical.maladies }}</p>
+            <p class="m-0">allergies: {{ dossier_medical.allergies }}</p>
+            <p class="m-0">analyses: {{ dossier_medical.analyses }}</p>
+            <p class="m-0">interventionChirurgicale: {{ dossier_medical.interventionChirurgicale }}</p>
+           <div class="d-flex">
+            <a href="{{ path('app_dossier_show', {'id': dossier_medical.id}) }}"><button type="button" class="btn btn-primary m-2">Afficher</button></a>
+            <a href="{{ path('app_dossier_edit', {'id': dossier_medical.id}) }}"><button type="button" class="btn btn-primary m-2">Modifier</button></a>
+        </div>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+    {% else %}
+        <div class="col-12">
+            <p class="text-center">Aucun dossier médical trouvé.</p>
+        </div>
+    {% endfor %}
+</div>
+</div>
+  
+ <center>   
+    <a href="{{ path('app_dossier_new') }}"><button type="button"class="btn btn-outline-primary btn-lg w-50 m-2">Ajouter</button></a>
+    <a href="{{ path('app_dossier_calcul') }}"><button type="button" class="btn btn-outline-primary btn-lg w-50 m-2">suivre votre santé</button></a>
+ </center>   
+
+
+<br>
+<div class="pagination justify-content-center mt-4">
+{{ knp_pagination_render(dossier_medicals, 'pagination.html.twig') }}
+</div></br>
+{% endblock %}
+

@@ -1,0 +1,92 @@
+{% extends 'base_front_event1.html.twig' %}
+
+{% block title %}Ticket Évènement{% endblock %}
+
+{% block body %}
+
+<body style="margin-left :0px; margin-right: 0px; margin-top: 0px;">
+		
+
+
+			{% for message in app.flashes('notification') %}
+
+				<div class="alert alert-info alert-dismissible fade show">
+
+					{{ message }}
+
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+				</div>
+
+			{% endfor %}
+	
+	</body>
+
+  
+
+
+
+     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+         <div class="row g-0">
+          
+               
+                 <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                    <h1 class="mb-0">Évènement Tickets</h1>
+                 </div>
+
+             
+        <tbody>  
+        
+         <div class="row">    
+
+        {% for event_ticket in event_tickets %}
+        <div class="col-md-4 mb-4">
+      <div class="card">
+        <img src="{{ event_ticket.image }}" class="card-img-top" alt="{{ event_ticket.matriculeEvent }}">
+        <div class="card-body">
+          <div class="display-5 mb-3">
+              <small class="align-top" style="font-size: 22px; line-height: 45px;">{{  event_ticket.id }}</small>
+           </div>    
+          <h5 class="card-title">{{ event_ticket.matriculeEvent }}</h5>
+          <p class="card-text">{{ event_ticket.dateTicket ? event_ticket.dateTicket|date('Y-m-d') : '' }}</p>
+          <p class="card-text">{{ event_ticket.valideTicket }}</p>
+            <p class="card-text">{{ event_ticket.prixTicket }}</p>
+             <a href="{{ path('app_events_ticket_edit', {'id': event_ticket.id}) }}"class="btn btn-primary py-2 px-4 mt-4">Modifier</a>
+            {{ include('events_ticket/_delete_form.html.twig') }}
+             <a href="{{ path('app_events_ticket_donne', {'id': event_ticket.id}) }}"class="btn btn-primary py-2 px-4 mt-4">Afficher</a>
+                   
+        </div>
+      </div>
+    </div>
+
+
+            
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+          {% endfor %}
+</div>
+        
+        </tbody>
+
+            
+            <a href="{{ path('app_event_show') }}" class="btn btn-primary py-2 px-4 mt-4">Liste des Événements</a>
+ 
+ </div> 
+     </div>
+     {{ knp_pagination_render(event_tickets, 'pagination.html.twig') }}
+        </div>
+        
+    
+
+    
+   
+{% endblock %}
+
+
+
+ 

@@ -1,0 +1,65 @@
+{% extends 'base_front_event.html.twig' %}
+
+{% block title %} Évènement {% endblock %}
+
+{% block body %}
+
+
+     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+         <div class="row g-0">
+          
+
+                           
+             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                 <h1 class="mb-0">Les Évenements</h1>
+            </div>
+
+   
+        <tbody>  
+         <div class="row">
+  {% for event in events %}
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <img src="{{ event.imageEvent }}" class="card-img-top" alt="{{ event.nomEvent }}">
+        <div class="card-body">
+          <div class="display-5 mb-3">
+              <small class="align-top" style="font-size: 22px; line-height: 45px;">{{ event.id }}</small>
+           </div>    
+          <h5 class="card-title">{{ event.nomEvent }}</h5>
+          <p class="card-text">{{ event.discriptionEvent }}</p>
+          <p class="card-text">{{ event.dateDebutEvent ? event.dateDebutEvent|date('Y-m-d') : '' }} - {{ event.dateFinEvent ? event.dateFinEvent|date('Y-m-d') : '' }}</p>
+          <p class="card-text">{{ event.adresseEvent }}</p>
+            <p class="card-text">{{ event.status }}</p>
+          <a href="{{ path('app_events_ticket_new', {'id': event.id}) }}" class="btn btn-primary">Réserver</a>
+        </div>
+      </div>
+    </div>
+
+
+            
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+          {% endfor %}
+</div>
+        
+        </tbody>
+ 
+ </div> 
+     </div>
+     {{ knp_pagination_render(events, 'pagination.html.twig') }}
+
+
+        </div>
+        
+    
+
+    
+   
+{% endblock %}
+
+
+
+ 

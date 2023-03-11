@@ -1,0 +1,46 @@
+{% extends 'baseback_dossier.html.twig' %} 
+{% block title %}Ficheconsultation{% endblock %}
+
+
+
+{% block body %}
+<div class="my-5">
+  <div class="row g-5 justify-content-center">
+  
+    {% for ficheconsultation in ficheconsultations %}
+    <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s" style="display: inline-block; margin-right: 20px;">
+      <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+        <div class="bg-light rounded">
+          <div class="border-bottom py-4 px-5 mb-4">
+            <h4 class="text-primary mb-1">{{ ficheconsultation.firstName }}{{ ficheconsultation.lastName }}</h4>
+            <small class="text-uppercase">{{ ficheconsultation.dateConsultation ? ficheconsultation.dateConsultation|date('Y-m-d') : '' }}</small>
+          </div>
+          <div class="d-flex mb-0">specialite:{{ ficheconsultation.specialite }}</div>
+          <div class="d-flex mb-0">traitement:{{ ficheconsultation.traitement }}</div>
+          <div class="d-flex mb-0">reccomendation:{{ ficheconsultation.reccomendation }}</div>
+          <div class="d-flex">
+            <a href="{{ path('app_fiche_show', {'id': ficheconsultation.id}) }}"><button type="button" class="btn btn-primary m-2">Afficher</button></a>
+            <a href="{{ path('app_fiche_edit', {'id': ficheconsultation.id}) }}"><button type="button" class="btn btn-primary m-2">Modifier</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <tr>
+      <td colspan="8">no records found</td>
+    </tr>
+    {% endfor %}
+  </div>
+</div>
+<center>
+ <a href="{{ path('app_fiche_new') }}"><button type="button" class="btn btn-primary w-50 m-2">create new</button></a>
+</center>
+<br>
+<div class="pagination justify-content-center mt-4">
+{{ knp_pagination_render(ficheconsultations, 'pagination.html.twig') }}
+</div></br>
+{% endblock %}
+
+
+
+    

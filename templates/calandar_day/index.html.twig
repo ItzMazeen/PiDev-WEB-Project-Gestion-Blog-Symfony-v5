@@ -1,0 +1,161 @@
+{% extends 'base.html.twig' %}
+
+
+{# oveeriding annoying header #}
+{% block header %}
+<div class="bg-dark" style="height: 20vh;"></div>
+{% endblock %}
+
+{# cdn for the chartjs style #}
+{% block stylesheet %}
+{# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" referrerpolicy="no-referrer" /> #}
+{% endblock %}
+
+
+{% block body %}
+<style>
+.custom-container {
+  padding: 20px; /* add padding to the container */
+  margin: 0 auto; /* center the container horizontally */
+  max-width: 1200px; /* set a maximum width for the container */
+}
+</style>
+	<br>
+	<br>
+	<br>
+	<div class="custom-container">
+		<div class="row">
+			<div class="row-md-12">
+
+{% if role_user  is defined and role_user == "ROLE_DOCTOR" %}
+	
+		{# chartJs tags #} 
+	<details class="border rounded">
+ 		 <summary class="bg-light p-2">Stats appointments/totalslots</summary>
+   			 <div class="p-2"  >
+     		 <canvas id="myChart" width="600" height="200">  my stats </canvas>
+    		 </div>
+	</details>
+
+{# the pdf link button #}
+<details class="border rounded">
+	<summary class="bg-light p-2">PDF-CALANDAR</summary>
+	<div class="p-2 d-flex align-items-center "   >
+
+   		<div class="d-inline-block m-2">
+			 		<a href="{{path('app_pdf_generator')}}" target="_blank"> 
+						<button class="btn btn-primary btn-block">GetPDF</button>
+					</a>		
+		</div>	 
+   		<div class="d-inline-block w-100 ml-2">
+			 	<div class="card bg-light ">
+				<div class="card-body  ">
+					<p class="card-text text-danger mb-0 ">
+						Note !!!  System Administration Delete All Calandar more than three months old . <br>
+					  	Please Consider downloading your Appointment regularly .
+					</p>
+				</div>
+			</div>		
+		</div>	 
+			
+    </div>
+</details>
+{% endif %}
+
+
+
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Date</th>
+				<th>DayStart</th>
+				<th>DayEnd</th>
+				<th>SessionDuration</th>
+				<th>LunchBreakStart</th>
+				<th>LunchBreakEnd</th>
+				{# <th>TotalTimeSlots</th> #}
+				<th>actions
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for calandar_day in calandar_days %}
+				<tr>
+					<td>{{ calandar_day.id }}
+					</td>
+					<td>{{ calandar_day.date ? calandar_day.date|date('Y-m-d') : '' }}
+					</td>
+					<td>{{ calandar_day.dayStart ? calandar_day.dayStart|date('H:i:s') : '' }}
+					</td>
+					<td>{{ calandar_day.dayEnd ? calandar_day.dayEnd|date('H:i:s') : '' }}
+					</td>
+					<td>{{ calandar_day.sessionDuration }}
+					</td>
+					<td>{{ calandar_day.lunchBreakStart ? calandar_day.lunchBreakStart|date('H:i:s') : '' }}
+					</td>
+					<td>{{ calandar_day.lunchBreakEnd ? calandar_day.lunchBreakEnd|date('H:i:s') : '' }}
+						{# </td><td>{{ calandar_day.totalTimeSlots }} #}
+					</td>
+					<td>
+						{% if user is defined %}
+							<a href="{{ path('app_calandar_day_show', {'id': calandar_day.id}) }}">
+								<button class="btn btn-success">show to book</button>
+							</a>
+						{% else %}
+							<a href="{{ path('app_calandar_day_show', {'id': calandar_day.id}) }}">
+								<button class="btn btn-success">show</button>
+							</a>
+							{# <a href="{{ path('app_calandar_day_edit', {'id': calandar_day.id }) }}"> #}
+								{# <button class="btn btn-success">edit</button>
+							</a> #}
+						{% endif %}
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="9">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	{# <a href="{{ path('app_calandar_day_new', { 'doctor': doctor } ) }}">Create new Calandar</a> #}
+
+	{% if user is defined %}
+		<a href="{{ path('app_user_index') }}">
+			<button class="btn btn-success">Back to doctors</button>
+		</a>
+		{# wrong logic actually here but i stoped the behavior on the router #}
+		{# only doctor can see what is below but anyway this page is ment for users  #}
+	{% else %} 
+		<a href="{{ path('app_calandar_day_new', { 'doctor': doctor } ) }}">
+			<button class="btn btn-success">Create new Calendar</button>
+		</a>
+		&nbsp; &nbsp;
+		<a href="{{ path('app_appointment_index') }}">
+			<button class="btn btn-success">List Appointments</button> 
+		</a>
+
+	{% endif %}
+
+	
+	<br>
+	<br>
+	<br>
+	<br>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+
+{# block js for the chart i am using jsuery make sure its loaded #}
+{% block javascripts2 %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script type="text/javascript" src="{{ asset('assets/jquery-3.6.3.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('assets/ajax_chart.js') }} "></script>
+{% endblock %}
+
+

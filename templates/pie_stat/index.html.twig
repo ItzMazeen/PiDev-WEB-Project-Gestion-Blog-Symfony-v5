@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}stat pie{% endblock %}
+
+{% block stylesheet %}
+{# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" referrerpolicy="no-referrer" /> #}
+{% endblock %}
+
+{# oveeriding annoying header #}
+{% block header %}
+<div class="bg-dark" style="height: 20vh;"></div>
+{% endblock %}
+
+{% block body %}
+<style>
+.custom-container {
+  padding: 20px; /* add padding to the container */
+  margin: 0 auto; /* center the container horizontally */
+  max-width: 1200px; /* set a maximum width for the container */
+}
+</style>
+
+	<br>
+	<br>
+	<br>
+<div class="custom-container">
+<div class="row">
+<div class="col-md-12">
+
+
+<details class="border rounded">
+  <summary class="bg-light p-2">Stats appointments/totalslots</summary>
+    <div class="p-2"  >
+        <canvas id="myChart" width="600" height="200">  my stats </canvas>
+    </div>
+</details>
+
+
+</div>
+</div>
+</div>
+
+
+{% endblock %}
+{% block javascripts2 %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script type="text/javascript" src="{{ asset('assets/jquery-3.6.3.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('assets/ajax_chart.js') }} "></script>
+    
+    
+{% endblock %}

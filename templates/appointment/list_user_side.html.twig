@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Appointment{% endblock %}
+
+{# oveeriding annoying header #}
+{% block header %}
+<div class="bg-dark" style="height: 20vh;"></div>
+{% endblock %}
+
+{% block body %}
+<style>
+.custom-container {
+  padding: 20px; /* add padding to the container */
+  margin: 0 auto; /* center the container horizontally */
+  max-width: 1200px; /* set a maximum width for the container */
+}
+</style>
+	<br>
+	<br>
+	<br>
+
+<div class="custom-container">
+<div class="row">
+<div class="col-md-12">
+
+
+
+	<h2>Appointment</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Doctor</th>
+				<th>Doctor's phone #</th>
+				<th>Date of Appointment</th>
+				<th>Reason</th>
+				<th>Hour</th>
+				<th>BookingState</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for appointment in appointments %} 
+				<tr>
+					<td>{{ appointment.id }}</td>
+					<td>{{ appointment.doctor.lastName }}</td>
+					<td>{{ appointment.doctor.phoneNumber }}</td>
+					<td>{{ appointment.date ? appointment.date|date('Y-m-d') : '' }}</td>
+					<td>{{ appointment.reason }}</td>
+					<td>{{ appointment.hour ? appointment.hour|date('H:i:s') : '' }}</td>
+					<td>{{ appointment.bookingState }}</td>
+					<td>
+						<a href="{{ path('app_appointment_show', {'id': appointment.id, 'iam_user': appointment.patient.id }) }}">show</a>
+						<a href="{{ path('app_appointment_edit', {'id': appointment.id}) }}">edit</a>
+						<a href="{{ path('app_front_home') }}">back-to-home</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	{# <a href="{{ path('app_appointment_new') }}">Create new</a> #}
+  </div>
+        </div>
+    </div>
+
+    <br><br><br><br><br>
+{% endblock %}

@@ -1,0 +1,24 @@
+<div class="container" >
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+    <div class="group-form">
+        {{ form_label(form.NomType, "Nom du Type de Service") }}
+        {{ form_widget(form.NomType, {'attr':{'class':'form-control'}}) }}
+        {% if form_errors(form.NomType) is not empty %}
+            <div class="alert alert-danger">
+            {{ form_errors(form.NomType) }}
+            </div>  
+        {% endif %}
+    </div>
+    <div class="group-form">
+        {{ form_label(form.Description, "Description du Service") }}
+        {{ form_widget(form.Description, {'attr':{'class':'form-control'}}) }}
+        {% if form_errors(form.Description) is not empty %}
+            <div class="alert alert-danger">
+            {{ form_errors(form.Description) }}
+            </div>  
+        {% endif %}
+    </div>
+</div>
+<button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}
+</div>

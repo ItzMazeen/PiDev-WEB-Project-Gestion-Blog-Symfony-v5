@@ -1,0 +1,61 @@
+{% extends 'gestion_service/FrontService.html.twig' %}
+
+{% block title %}Service{% endblock %}
+
+{% block body %}
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+            <h5 class="fw-bold text-primary text-uppercase">Nos Services</h5>
+            <h1 class="mb-0">Les services disponibles!</h1>
+        </div>
+    <h1>Les Services</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom Service</th>
+                <th>Proprietaire</th>
+                <th>Id type</th>
+                <th>Prix</th>
+                <th>Date de debut</th>
+                <th>Date de fin</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for service in services %}
+            <tr>
+                <td>{{ service.id }}</td>
+                <td>{{ service.NomService }}</td>
+                <td>{{ service.Proprietaire }}</td>
+                <td>{{ service.idType }}</td>
+                <td>{{ service.Prix }}</td>
+                <td>{{ service.DateDebut ? service.DateDebut|date('Y-m-d') : '' }}</td>
+                <td>{{ service.DateFin ? service.DateFin|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_service_show', {'id': service.id}) }}"><button class="btn btn-primary">Afficher</button></a>
+                   
+                   
+                    {% if roleunique == "ROLE_DOCTOR"  %}
+
+                    <a href="{{ path('app_service_edit', {'id': service.id}) }}"><button class="btn btn-primary">Modifier</button></a>
+
+                    {% endif %}
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        <div class="container justify-content-center">
+            {{ knp_pagination_render(services, 'pagination.html.twig') }}
+        </div>
+    </div>
+</div>
+{% endblock %}

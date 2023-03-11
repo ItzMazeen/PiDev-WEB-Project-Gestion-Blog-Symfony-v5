@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Appointment{% endblock %}
+
+{# oveeriding annoying header #}
+{% block header %}
+<div class="bg-dark" style="height: 20vh;"></div>
+{% endblock %}
+
+{% block body %}
+<style>
+.custom-container {
+  padding: 20px; /* add padding to the container */
+  margin: 0 auto; /* center the container horizontally */
+  max-width: 1200px; /* set a maximum width for the container */
+}
+</style>
+	<br>
+	<br>
+	<br>
+
+<div class="custom-container">
+<div class="row">
+<div class="col-md-12">
+    <h1>Appointment</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ appointment.id }}</td>
+            </tr>
+            <tr>
+                <th>Patient</th>
+                <td>{{ appointment.Patient.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ appointment.Patient.email }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ appointment.Patient.phoneNumber }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ appointment.date ? appointment.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Reason</th>
+                <td>{{ appointment.reason }}</td>
+            </tr>
+            <tr>
+                <th>Hour</th>
+                <td>{{ appointment.hour ? appointment.hour|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>BookingState</th>
+                <td>{{ appointment.bookingState }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {# <a href="{{ path('app_appointment_index') }}">back to list</a> #}
+
+    
+
+    <a href="{{ path('app_appointment_edit', {'id': appointment.id}) }}">edit</a>
+
+    {{ include('appointment/_delete_form.html.twig') }}
+
+    </div>
+        </div>
+    </div>
+
+    <br><br><br><br><br>
+{% endblock %}

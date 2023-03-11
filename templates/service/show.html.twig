@@ -1,0 +1,55 @@
+{% extends 'gestion_service/FrontService.html.twig' %}
+
+{% block title %}Service{% endblock %}
+
+{% block body %}
+    <h1>Liste des Services</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ service.id }}</td>
+            </tr>
+            <tr>
+                <th>NomService</th>
+                <td>{{ service.NomService }}</td>
+            </tr>
+            <tr>
+                <th>Proprietaire</th>
+                <td>{{ service.Proprietaire }}</td>
+            </tr>
+            <tr>
+                <th>Id_type</th>
+                <td>{{ service.idType }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ service.Prix }}</td>
+            </tr>
+            <tr>
+                <th>Date_debut</th>
+                <td>{{ service.DateDebut ? service.DateDebut|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_fin</th>
+                <td>{{ service.DateFin ? service.DateFin|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="container justify-content-center mt-3 flex-row">
+
+    <a href="{{ path('app_service_index') }}"><button class="btn btn-primary">Retour</button></a>
+
+    {% if roleunique == "ROLE_DOCTOR"  %}
+    <a href="{{ path('app_service_edit', {'id': service.id}) }}"><button class="btn btn-primary">Modifier</button></a>
+   
+   
+    <p>
+    {{ include('service/_delete_form.html.twig') }}
+
+    
+{% endif %}
+
+{% endblock %}

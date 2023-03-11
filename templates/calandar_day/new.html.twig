@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CalandarDay
+{% endblock %}
+
+{# oveeriding annoying header #}
+{% block header %}
+<div class="bg-dark" style="height: 20vh;"></div>
+{% endblock %}
+
+{% block body %}
+<style>
+.custom-container {
+  padding: 20px; /* add padding to the container */
+  margin: 0 auto; /* center the container horizontally */
+  max-width: 1200px; /* set a maximum width for the container */
+}
+</style>
+
+	<br>
+	<br>
+	<br>
+<div class="custom-container">
+<div class="row">
+<div class="col-md-12">
+
+
+
+	<h1>Create new CalandarDay</h1>
+
+	{{ include('calandar_day/_form.html.twig') }}
+
+	<a href="{{ path('app_calandar_day_index') }}">
+		<button class="btn btn-success">back to list</button>
+	</a>
+
+	<br>
+	<br>
+	<br>
+	
+
+	</div>
+	</div>
+	</div>
+{% endblock %}
+

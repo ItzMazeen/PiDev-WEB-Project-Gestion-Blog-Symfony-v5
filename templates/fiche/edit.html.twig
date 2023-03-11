@@ -1,0 +1,14 @@
+{% extends 'baseback_dossier.html.twig' %} 
+{% block title %} Modifier Ficheconsultation{% endblock %}
+
+
+{% block body %}
+    <h1>Edit Ficheconsultation</h1>
+
+    {{ include('fiche/_form.html.twig', {'button_label': 'Update'}) }}
+<center>
+    <a href="{{ path('app_fiche_index') }}"><button class="btn btn-primary w-50 m-2">back to list</button></a>
+</center>
+    {{ include('fiche/_delete_form.html.twig') }}
+    
+{% endblock %}

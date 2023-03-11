@@ -1,0 +1,36 @@
+{% extends 'base_b.html.twig' %}
+
+{% block title %}Cleaning Database
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="align-items-center">
+		<h1>cleaning unnecessary data</h1>
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success">{{ message }}</div>
+		{% endfor %}
+		<div>
+			<ul>
+				<li>Remove all old unUsed timeSlots  :
+					<a href="{{path('app_time_slot_management_delete_slot')}}">
+						<button class="btn btn-danger">
+							Delete unbooked Slots</button>
+					</a>
+				</li>
+
+				<br>
+
+				<li>Remove calandars more than 3 momnths  :
+					<a href="{{path('app_time_slot_management_delete_calandar')}}">
+						<button class="btn btn-danger ">
+							delete > 3-m Calandars
+						</button>
+					</a>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+{% endblock %}

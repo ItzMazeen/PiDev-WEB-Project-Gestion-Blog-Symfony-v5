@@ -1,0 +1,36 @@
+<div class="container">
+        <div class="col-xl-12">
+            <div class="bg-light rounded h-100 d-flex align-items-center p-5 wow zoomIn" data-wow-delay="0.9s">     
+            {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+                <div class="row g-3">
+                    <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                        <h3 class="mb-0">Ajouter un Article : </h3>
+                    </div>
+                        <div class="form-group">
+                            {{ form_label(form.sujet,"Sujet de l'article :") }}
+                            {{ form_widget(form.sujet,{'attr':{'class':'form-control','placeholder': "Sujet de l'article"}}) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.contenu, "Contenu de l'article :") }}
+                            {{ form_widget(form.contenu,{'attr':{'class':'form-control','placeholder': "Contenu de l'article"}}) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.image,"Image de l'article :") }}
+                            {{ form_widget(form.image,{'attr':{'class':'form-control','placeholder':"Image de l'article"}}) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.userId) }}
+                            {{ form_widget(form.userId) }}
+                        </div>
+                        <button class="btn btn-dark w-100 py-3">{{ button_label|default('Save') }}</button>
+                        <button class="btn btn-dark w-100 py-3"> <a href="{{ path('app_article_index1') }}">Annuler</a></button>
+                    </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+
+
+
+
+

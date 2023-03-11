@@ -1,0 +1,175 @@
+{% extends 'basefront_dossier.html.twig' %}
+
+{% block title %}Calcul de l'IMC{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <h1>Calcul de l'IMC</h1>
+<form method="POST" action="{{ path('app_dossier_calcul')}}">
+      <div class="form-group">
+        <label for="taille">Taille (en cm):</label>
+        <input type="number" class="form-control" id="taille" name="taille" placeholder="Entrez votre taille en cm">
+      </div>
+      <div class="form-group">
+        <label for="poids">Poids (en kg):</label>
+        <input type="number" class="form-control" id="poids" name=" poids" placeholder="Entrez votre poids en kg">
+      </div>
+      <br>
+       <button type="submit" class="btn btn-primary" id="calculer">Calculer</button>
+       </br>
+    </form>
+    <div id="resultat" class="mt-4"></div>
+  </div>
+
+  <div class="container">
+<h2>Taux de vitamines et minéraux</h2>  
+  <form method="POST" action="{{ path('app_dossier_calcul')}}">
+  <div class="form-group">
+  <label for="vitD">Vitamine D :</label>
+  <input type="number" class="form-control" id="vitD" name="vitD" min="0" max="100" step="1"> ng/mL<br>
+  
+  <label for="fer">Fer :</label>
+  <input type="number" class="form-control" id="fer" name="fer" min="0" max="50" step="0.1"> µg/dL<br>
+  
+  <label for="calcium">Calcium :</label>
+  <input type="number" class="form-control" id="calcium" name="calcium" min="0" max="10" step="0.1"> mg/dL<br>
+  
+  <label for="magnesium">Magnésium :</label>
+  <input type="number" class="form-control" id="magnesium" name="magnesium" min="0" max="5" step="0.1"> mg/dL<br>
+  
+  <label for="zinc">Zinc :</label>
+  <input type="number" class="form-control" id="zinc" name="zinc" min="0" max="20" step="0.1"> µg/dL<br>
+    </div>
+  <br>
+  <button type="submit" class="btn btn-primary" onclick="getConseils()" id="conseils">Conseils</button>
+  <br>
+</form>
+<div id="resultat1" class="mt-4"></div>
+</div>
+
+<div class="container">
+<h1>Calcul des calories quotidiennes</h1>
+	<form>
+		<label for="age">Âge:</label>
+		<input type="number" class="form-control"  id="age" name="age"><br><br>
+
+		<label for="gender">Sexe:</label>
+		<select id="gender"  class="form-control" name="gender">
+			<option value="male">Masculin</option>
+			<option value="female">Féminin</option>
+		</select><br><br>
+
+		<label for="height">Taille (en cm):</label>
+		<input type="number"  class="form-control" id="height" name="height"><br><br>
+
+		<label for="weight">Poids (en kg):</label>
+		<input type="number"  class="form-control" id="weight" name="weight"><br><br>
+
+		<label for="activity-level">Niveau d'activité physique:</label>
+		<select id="activity-level" class="form-control" name="activity-level">
+			<option value="1.2">Sédentaire</option>
+			<option value="1.375">Léger</option>
+			<option value="1.55">Modéré</option>
+			<option value="1.725">Actif</option>
+			<option value="1.9">Très actif</option>
+		</select><br><br>
+		<button type="submit"  class="btn btn-primary" onclick="calculate()">Calculer</button>
+		<br><p>Votre apport calorique quotidien est de: <span id="calories"></span> calories</p></br>
+	</form>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+<script>
+    document.getElementById('calculer').addEventListener('click', function() {
+        event.preventDefault();
+    var taille = document.getElementById('taille').value;
+    var poids = document.getElementById('poids').value;
+    var resultatDiv = document.getElementById('resultat')
+    if (taille && poids) {
+      var imc = (poids / ((taille/100) * (taille/100))).toFixed(2);
+      var message;
+      if (imc < 18.5) {
+        message = "Vous êtes en insuffisance pondérale.";
+      } else if (imc < 25) {
+        message = "Votre poids est normal.";
+      } else if (imc < 30) {
+        message = "Vous êtes en surpoids.";
+      } else {
+        message = "Vous êtes obèse.";
+      }
+      resultatDiv.innerHTML = "Votre IMC est de " + imc + ". " + message;
+    } else {
+      resultatDiv.innerHTML = "Veuillez saisir votre taille et votre poids.";
+    }
+  });
+  
+  document.getElementById('obtenir-conseils').addEventListener('click', function() {
+            
+            getConseils();
+        });
+function getConseils() {
+     event.preventDefault();
+  const vitD = parseFloat(document.getElementById("vitD").value);
+  const fer = parseFloat(document.getElementById("fer").value);
+  const calcium = parseFloat(document.getElementById("calcium").value);
+  const magnesium = parseFloat(document.getElementById("magnesium").value);
+  const zinc = parseFloat(document.getElementById("zinc").value);
+
+  let conseils = "";
+
+  if (vitD < 20) {
+    conseils += "Votre taux de vitamine D est faible, il est recommandé de passer plus de temps à l'extérieur ou de prendre un supplément de vitamine D.<br>";
+  }
+
+  if (fer < 12) {
+    conseils += "Votre taux de fer est faible, il est recommandé de manger plus d'aliments riches en fer tels que la viande rouge, les lentilles et les épinards.<br>";
+  }
+
+  if (calcium < 8.5) {
+    conseils += "Votre taux de calcium est faible, il est recommandé de manger plus d'aliments riches en calcium tels que le lait, le fromage et les légumes verts.<br>";
+  }
+
+  if (magnesium < 1.8) {
+    conseils += "Votre taux de magnésium est faible, il est recommandé de manger plus d'aliments riches en magnésium tels que les noix, les graines et les légumes verts.<br>";
+  }
+
+  if (zinc < 0.7) {
+    conseils += "Votre taux de zinc est faible, il est recommandé de manger plus d'aliments riches en zinc tels que les noix, les graines et les légumes verts.<br>";
+  }
+
+  document.getElementById("resultat1").innerHTML = conseils;
+}
+
+document.getElementById('obtenir-conseils').addEventListener('click', function() {
+            
+            calculate();
+        });
+function calculate() {
+     event.preventDefault();
+			var age = document.getElementById("age").value;
+			var gender = document.getElementById("gender").value;
+			var height = document.getElementById("height").value;
+			var weight = document.getElementById("weight").value;
+			var activityLevel = document.getElementById("activity-level").value;
+
+			// Formule de calcul des calories adaptées à chaque personne
+			var calories = (10 * weight) + (6.25 * height) - (5 * age);
+
+			if (gender == "male") {
+				calories += 5;
+			} else {
+				calories -= 161;
+			}
+
+			calories *= activityLevel;
+
+			// Afficher les résultats du calcul
+			document.getElementById("calories").innerHTML = calories.toFixed(2);
+		}
+
+</script>
+
+     {% endblock %}

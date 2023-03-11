@@ -1,0 +1,91 @@
+{% extends 'base_back_event.html.twig' %}
+
+{% block title %}Dashboard Évènement{% endblock %}
+
+{% block body %}
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light rounded-top p-4" >
+        <div class="row">
+            <div class="col-12 col-sm-6 text-center text-sm-start">
+               <h1 style="text-align: center;">Évènement</h1>
+
+                <table class="table table-striped table-hover" >
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nom_event</th>
+                            <th scope="col">Discription_event</th>
+                            <th scope="col">Image_event</th>
+                            <th scope="col">Date_debut_event</th>
+                            <th scope="col">Date_fin_event</th>
+                            <th scope="col">Adresse_event</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                    
+                            <th scope="row">{{ event.id }}</th>
+                            <td>{{ event.nomEvent }}</td>
+                            <td>{{ event.discriptionEvent }}</td>
+                            <td><img src="{{ event.imageEvent }}" width="100" height="100"></td>
+                            <td>{{ event.dateDebutEvent ? event.dateDebutEvent|date('Y-m-d') : '' }}</td>
+                            <td>{{ event.dateFinEvent ? event.dateFinEvent|date('Y-m-d') : '' }}</td>
+                            <td>{{ event.adresseEvent }}</td>
+                            <td>{{ event.status }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <div class="d-flex justify-content-between mt-4">
+                    
+                     <a href="{{ path('app_event_index') }}"class="btn btn-primary py-2 px-4 mt-4">Liste des Évenements</a>
+                     
+                    
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<div id="share-buttons" class="bg-light p-3 rounded shadow-sm">
+  Partager sur les réseaux sociaux :
+
+  <!-- facebook -->
+  <a class="facebook", target="blank"><i class="fab fa-facebook"></i></a>
+  
+  <!-- twitter -->
+  <a class="twitter" target="blank"><i class="fab fa-twitter"></i></a>
+  
+  <!-- linkedin -->
+  <a class="linkedin" target="blank"><i class="fab fa-linkedin"></i></a>
+  
+
+
+</div>
+
+<script>
+const link = 'http://127.0.0.1:8000/teste/';
+
+
+const msg = encodeURIComponent('Bonjour,On vous inviter à notre événement');
+const title = encodeURIComponent('event');
+
+const fb = document.querySelector('.facebook');
+fb.href = `https://www.facebook.com/share.php?u=${link}`;
+
+const twitter = document.querySelector('.twitter');
+twitter.href = `http://twitter.com/share?&url=${link}&text=${msg}&hashtags=event,evnement`;
+
+const linkedIn = document.querySelector('.linkedin');
+linkedIn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${link}`;
+
+
+</script>
+         
+            </div>
+            <div class="col-12 col-sm-6 text-center text-sm-end">
+                <!-- col vide -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

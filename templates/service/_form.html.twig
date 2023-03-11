@@ -1,0 +1,68 @@
+<div class="container" >
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+    <div class="group-form">
+    {{ form_label(form.NomService, "Nom du Service") }}
+    {{ form_widget(form.NomService, {'attr':{'class':'form-control'}}) }}
+        {% if form_errors(form.NomService) is not empty %}
+            <div class="alert alert-danger">
+            {{ form_errors(form.NomService) }}
+            </div>  
+        {% endif %}
+    </div>
+    <div class="group-form">
+    {{ form_label(form.Proprietaire, "Proprietaire du Service") }}
+    {{ form_widget(form.Proprietaire, {'attr':{'class':'form-control'}}) }}
+        {% if form_errors(form.Proprietaire) is not empty %}
+            <div class="alert alert-danger">
+            {{ form_errors(form.Proprietaire) }}
+            </div>  
+        {% endif %}
+    </div>
+    <div class="group-form">
+    {{ form_label(form.id_type, "Identifiant du Service" )}}
+    {{ form_widget(form.id_type, {'attr':{'class':'form-control'}}) }}
+        {% if form_errors(form.id_type) is not empty %}
+            <div class="alert alert-danger">
+            {{ form_errors(form.id_type) }}
+            </div>  
+        {% endif %}
+    </div>
+    <div class="group-form">
+    {{ form_label(form.Prix, "Prix du Service") }}
+    {{ form_widget(form.Prix, {'attr':{'class':'form-control'}}) }}
+        {% if form_errors(form.Prix) is not empty %}
+            <div class="alert alert-danger">
+            {{ form_errors(form.Prix) }}
+            </div>  
+        {% endif %}
+    </div>
+    <div class="group-form">
+    {{ form_label(form.Date_debut, "Date de debut" )}}
+    {{ form_widget(form.Date_debut, {'attr':{'class':'form-control'}}) }}
+        {% if form_errors(form.Date_debut) is not empty %}
+            <div class="alert alert-danger">
+            {{ form_errors(form.Date_debut) }}
+            </div>  
+        {% endif %}
+    </div>
+    <div class="group-form">
+    {{ form_label(form.Date_fin, "Date de Fin" )}}
+    {{ form_widget(form.Date_fin, {'attr':{'class':'form-control'}}) }}
+        {% if form_errors(form.Date_fin) is not empty %}
+            <div class="alert alert-danger">
+            {{ form_errors(form.Date_fin) }}
+            </div>  
+        {% endif %}
+    </div>
+     <div class="group-form">
+    {{ form_label(form.TypeService, "Type du Service") }}
+    {{ form_widget(form.TypeService, {'attr':{'class':'form-control'}}) }}
+        {% if form_errors(form.TypeService) is not empty %}
+            <div class="alert alert-danger">
+            {{ form_errors(form.TypeService) }}
+            </div>  
+        {% endif %}
+    </div>
+    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}
+</div>²²

@@ -1,0 +1,76 @@
+<div class="container">
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+
+<div class="from-group"
+     {{ form_label(form.nom_event,"Nom Évenements") }}
+     {{ form_widget(form.nom_event,{'attr':{'class':'from-control'}}) }}
+     {% if form_errors(form.nom_event) is not empty %}
+     <div class="alert alert-danger">
+     {{ form_errors(form.nom_event) }}
+</div>
+{% endif %}
+</div>
+
+<div class="from-group"
+     {{ form_label(form.discription_event,"Discription Évenements") }}
+     {{ form_widget(form.discription_event,{'attr':{'class':'from-control'}}) }}
+     {% if form_errors(form.discription_event) is not empty %}
+     <div class="alert alert-danger">
+     {{ form_errors(form.discription_event) }}
+ </div>
+ {% endif %}
+ </div>
+
+
+ <div class="from-group"
+     {{ form_label(form.image_event,"Image Évenements") }}
+     {{ form_widget(form.image_event,{'attr':{'class':'from-control'}}) }}
+     {% if form_errors(form.image_event	) is not empty %}
+     <div class="alert alert-danger">
+     {{ form_errors(form.image_event) }}
+ </div>  
+{% endif %}
+</div>
+
+
+ <div class="from-group"
+     {{ form_label(form.date_debut_event,"Date debut") }}
+     {{ form_widget(form.date_debut_event,{'attr':{'class':'from-control'}}) }}
+     {% if form_errors(form.date_debut_event) is not empty %}
+     <div class="alert alert-danger">
+     {{ form_errors(form.date_debut_event) }}
+ </div>  
+{% endif %}
+</div>
+
+ <div class="from-group"
+     {{ form_label(form.date_fin_event,"Date fin") }}
+     {{ form_widget(form.date_fin_event,{'attr':{'class':'from-control'}}) }}
+     {% if form_errors(form.date_fin_event) is not empty %}
+     <div class="alert alert-danger">
+     {{ form_errors(form.date_fin_event) }}
+ </div>  
+{% endif %}
+ </div> 
+
+ <div class="from-group"
+     {{ form_label(form.adresse_event,"Adresse Évenements") }}
+     {{ form_widget(form.adresse_event,{'attr':{'class':'from-control'}}) }}
+     {% if form_errors(form.adresse_event) is not empty %}
+     <div class="alert alert-danger">
+     {{ form_errors(form.adresse_event) }}
+ </div>  
+{% endif %}
+ </div>
+ <div class="from-group"
+     {{ form_label(form.status,"Statut") }}
+     {{ form_widget(form.status,{'attr':{'class':'from-control'}}) }}
+     {% if form_errors(form.status) is not empty %}
+     <div class="alert alert-danger">
+     {{ form_errors(form.status) }}
+ </div>  
+{% endif %}
+ </div>    
+    <button class="btn btn-primary py-2 px-4 mt-4">{{ button_label|default('Ajouter') }}</button>
+{{ form_end(form) }}
+</div>

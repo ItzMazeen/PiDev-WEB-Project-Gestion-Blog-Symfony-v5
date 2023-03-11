@@ -1,0 +1,40 @@
+{% extends 'basefront_dossier.html.twig' %} 
+{% block title %}  DossierMedical{% endblock %}
+
+{% block body %}
+  
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-7">
+                    <div class="section-title position-relative pb-3 mb-5">
+                        <h5 class="fw-bold text-primary text-uppercase">votre dossier</h5>
+                        <h1 class="mb-0">{{ dossier_medical.firstName }} {{ dossier_medical.lastName }}</h1>
+                    </div>
+  
+                    <div class="row g-0 mb-3">
+                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i><span >Email:</span>{{ dossier_medical.email }}</h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i><span >Date de naissance:</span><span class="text-left mr-2">{{ dossier_medical.dateNaissance ? dossier_medical.dateNaissance|date('Y-m-d') : '' }}</span></h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i><span>Vaccins:</span><span>{{ dossier_medical.vaccins }}</span></h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i><span>Maladies:</span><span>{{ dossier_medical.vaccins }}</span></h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i><span>Allergies:</span><span>{{ dossier_medical.allergies }}</span></h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i><span>Analyses:</span><span>{{ dossier_medical.analyses }}</span></span></h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i><span>Intervention chirurgicale:</span><span>{{ dossier_medical.interventionChirurgicale }}</span></h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i><span>Allergies:</span><span>{{ dossier_medical.allergies }}</span></h5>
+                        </div>
+                        
+                    </div>
+              
+                </div>
+            </div>
+        </div>
+    </div>
+<center> 
+    <a href="{{ path('app_dossier_index') }}"><button type="button"class="btn btn-outline-primary btn-lg w-50 m-2"> retourne a la liste</button></a>
+    <a href="{{ path('app_dossier_edit', {'id': dossier_medical.id}) }}"><button type="button"class="btn btn-outline-primary btn-lg w-50 m-2">Modifier</button></a>
+    {{ include('dossier/_delete_form.html.twig') }}
+    <a href="{{ path('app_dossier_donnes', {'id': dossier_medical.id}) }}"><button type="button"class="btn btn-outline-primary btn-lg w-50 m-2">Telecharger</button></a>
+</center> 
+    
+{% endblock %}

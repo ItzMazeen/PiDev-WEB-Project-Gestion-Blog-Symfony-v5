@@ -1,0 +1,40 @@
+ <!-- Navbar Start -->
+    <div class="container-fluid position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+           
+                <h1 class="m-0"><img src="{{asset('front/img/favicon.png')}}" alt="" /></i>  Aidme</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="#" class="nav-item nav-link">Home</a>
+                    <a href="{{path('app_service_index')}}" class="nav-item nav-link">Services</a>
+                    <a href="#" class="nav-item nav-link">Produits</a>
+                    <a href="#" class="nav-item nav-link">Rendez-vous</a>
+                    <a href="{{path('app_article_index')}}" class="nav-item nav-link">Blog</a>
+                    <a href="{{path('app_dossier_index')}}" class="nav-item nav-link">Dossier medicale</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Événements</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="{{ path('app_event_show') }}" class="dropdown-item">Événements</a>
+                            <a href="{{ path('app_events_ticket_index') }}" class="dropdown-item">Ticket</a>
+                        </div>
+                    </div>
+                    <a href="{{path('app_logout')}}" class="nav-item nav-link">logout</a>
+            </div>
+        </nav>
+        {# <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+            <div class="row py-5">
+                <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                    <h1 class="display-4 text-white animated zoomIn">votre Dossier Medical </h1>
+                    <a href="" class="h5 text-white">Home</a>
+                    <i class="far fa-circle text-white px-2"></i>
+                    <a href="" class="h5 text-white">Dossier</a>
+                </div>
+            </div>
+        </div> #}
+
+    </div>
+    <!-- Navbar End -->

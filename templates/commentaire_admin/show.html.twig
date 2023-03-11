@@ -1,0 +1,58 @@
+{% extends 'gestion_blog/backDetails.html.twig' %}
+
+{% block title %}Aidme | Détails Commentaire {% endblock %}
+
+{% block body %}
+
+        <div class="container-fluid pt-4 px-4">
+            <div class="bg-light text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h4 class="mb-0">Détails Commentaire</h4>
+                    <div class="btn-group" role="group">
+                                {{ include('commentaire_admin/_deleteshow_form.html.twig') }}
+                                <a class="btn btn-outline-primary" href="{{ path('app_commentaire_index1') }}">Retour à la liste</a>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table text-start align-middle table-bordered table-hover mb-0">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commentaire.id }}</td>
+            </tr>
+                        <tr>
+                <th>Commentateur </th>
+                <td>{{ commentaire.userId }}</td>
+            </tr>
+                        </tr>
+                        <tr>
+                <th>Sujet Article</th>
+
+                                         <td>{{ commentaire.article.sujet }}</td>
+                                                     </tr>
+            <tr>
+                <th>Contenu de commentaire</th>
+                <td>{{ commentaire.contenu }}</td>
+
+
+            <tr>
+                <th>Date creation</th>
+                <td>{{ commentaire.createdAt ? commentaire.createdAt|date('d-m-Y à H:i:s') : '' }}</td>
+                
+            </tr>
+
+                
+                
+
+
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+
+
+
+
+{% endblock %}

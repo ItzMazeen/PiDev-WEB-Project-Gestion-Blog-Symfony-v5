@@ -1,0 +1,41 @@
+{% extends 'baseBACKUP.html.twig' %}
+
+{% block title %}CalandarDay index
+{% endblock %}
+
+{# oveeriding annoying header #}
+
+{% block header %}
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div style="text-align:center ; ">
+		<h2>
+			{{ code }}
+		</h2>
+	</div>
+
+
+{% endblock %}
+
+{% block body %}
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div style=" text-align:center ; background: red ">
+		<h4>
+			{% if errormsg is defined %}
+				{{ errormsg }}
+			{% endif %}
+		</h4>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+{% endblock %}

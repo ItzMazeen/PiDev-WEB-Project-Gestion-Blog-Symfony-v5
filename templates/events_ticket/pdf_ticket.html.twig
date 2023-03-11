@@ -1,0 +1,46 @@
+{% extends 'base_pdf.html.twig' %}
+
+
+{% block body %}
+<div style="width: 100%; text-align: center;">
+    <h1 style="font-size: 24px; margin-bottom: 30px;">Event Ticket</h1>
+
+    <table style="width: 70%; margin: 0 auto; border-collapse: collapse;">
+        <tbody>
+            <tr style="background-color: #f1f1f1;">
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Id</th>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ event_ticket.id }}</td>
+            </tr>
+            <tr>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Matricule_event</th>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ event_ticket.matriculeEvent }}</td>
+            </tr>
+            <tr>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Image</th>
+                <td style="border: 1px solid #ddd; padding: 8px;">
+                    <img src="{{ event_ticket.image }}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+                </td>
+            </tr>
+            <tr>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Date_ticket</th>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ event_ticket.dateTicket ? event_ticket.dateTicket|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Valide_ticket</th>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ event_ticket.valideTicket }}</td>
+            </tr>
+            <tr>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Prix_ticket</th>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ event_ticket.prixTicket }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+                
+{% endblock %}
+
+
+      
+

@@ -1,0 +1,26 @@
+{% extends 'base_front_event1.html.twig' %}
+
+{% block title %}Modifier Ticket{% endblock %}
+
+{% block body %}
+ <div class="container-fluid pt-4 px-4">
+                <div class="bg-light rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+    <h1>Modifier Ticket</h1>
+
+    {{ include('events_ticket/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+     <a href="{{ path('app_events_ticket_index') }}"class="btn btn-primary py-2 px-4 mt-4">Liste des Tickets</a>
+
+   
+
+            </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+{% endblock %}

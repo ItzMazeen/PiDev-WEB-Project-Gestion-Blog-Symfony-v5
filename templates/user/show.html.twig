@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}User
+{% endblock %}
+
+{% block body %}
+	<h1>User</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ user.id }}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{ user.email }}</td>
+			</tr>
+			<tr>
+				<th>Roles</th>
+				<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+			</tr>
+			<tr>
+				<th>Password</th>
+				<td>{{ user.password }}</td>
+			</tr>
+			<tr>
+				<th>Image</th>
+				<td>{{ user.image }}</td>
+			</tr>
+			<tr>
+				<th>FirstName</th>
+				<td>{{ user.firstName }}</td>
+			</tr>
+			<tr>
+				<th>LastName</th>
+				<td>{{ user.lastName }}</td>
+			</tr>
+			<tr>
+				<th>Speciality</th>
+				<td>{{ user.speciality }}</td>
+			</tr>
+			<tr>
+				<th>Licence</th>
+				<td>{{ user.licence }}</td>
+			</tr>
+			<tr>
+				<th>Location</th>
+				<td>{{ user.location }}</td>
+			</tr>
+			<tr>
+				<th>PhoneNumber</th>
+				<td>{{ user.phoneNumber }}</td>
+			</tr>
+			<tr>
+				<th>DateOfBirth</th>
+				<td>{{ user.dateOfBirth ? user.dateOfBirth|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Status</th>
+				<td>{{ user.status }}</td>
+			</tr>
+			<tr>
+				<th>Created_at</th>
+				<td>{{ user.createdAt ? user.createdAt|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Gender</th>
+				<td>{{ user.gender }}</td>
+			</tr>
+			<tr>
+				<th>Last_login</th>
+				<td>{{ user.lastLogin }}</td>
+			</tr>
+			<tr>
+				<th>Updated_at</th>
+				<td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Extra1_rdv</th>
+				<td>{{ user.extra1Rdv }}</td>
+			</tr>
+			<tr>
+				<th>Age</th>
+				<td>{{ user.age }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_user_index') }}">back to list</a>
+
+	<a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+
+	{{ include('user/_delete_form.html.twig') }}
+{% endblock %}
